@@ -6,6 +6,23 @@ See RFC: https://github.com/sveltejs/rfcs/pull/24
 
 do not rely on this library yet!
 
+## Install Instructions
+
+```bash
+npm i svelte-actions
+```
+
+Available actions:
+
+- `clickOutside`
+- `longpress`
+- `pannable`
+- `lazyload`
+
+## Discuss High Level Policy
+
+https://github.com/sw-yx/svelte-actions/issues/7
+
 ## Included Actions
 
 ### `clickOutside`
