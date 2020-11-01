@@ -61,7 +61,21 @@ Discuss this action: https://github.com/sw-yx/svelte-actions/issues/3
 
 `export function pannable(node: HTMLElement): ReturnType<Action>`
 
-Creates `panStart`, `panMove`, `panEnd` events so you can drag elements. Demo: https://svelte.dev/tutorial/actions
+Creates `panstart`, `panmove`, `panend` events so you can drag elements. 
+
+Demo: https://svelte.dev/tutorial/actions
+
+```svelte
+<div class="box"
+	use:pannable
+	on:panstart={handlePanStart}
+	on:panmove={handlePanMove}
+	on:panend={handlePanEnd}
+></div>
+```
+
+
+Discuss this action: https://github.com/sw-yx/svelte-actions/issues/6
 
 ### `lazyload`
 
