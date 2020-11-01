@@ -34,6 +34,8 @@ Demo: https://svelte.dev/repl/dae848c2157e48ab932106779960f5d5?version=3.19.2
 </div>
 ```
 
+Discuss this action: https://github.com/sw-yx/svelte-actions/issues/4
+
 ### `longpress`
 
 `export function longpress(node: HTMLElement, duration: number): ReturnType<Action>`
@@ -52,6 +54,8 @@ Demo: https://svelte.dev/tutorial/adding-parameters-to-actions
     on:mouseenter="{() => pressed = false}"
   >press and hold</button>
 ```
+
+Discuss this action: https://github.com/sw-yx/svelte-actions/issues/3
 
 ### `pannable`
 
@@ -75,9 +79,12 @@ Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
 <img use:lazyLoad={{src:"/myimage"}} alt="">
 ```
 
+Discuss this action: https://github.com/sw-yx/svelte-actions/issues/2
 
-## Actions for Consideration
+
+## Future actions considering adding
 
 - `closeOnEscape`/`closeOnScroll`/`closeOnFocusOutside`: https://github.com/sveltejs/rfcs/pull/24#issuecomment-645094235
 - `selectTextOnFocus`/`clearTextOnEscape`/`blurOnEscape`/`blurOnEnter`:  
 - `viewport`: creates `enterViewport`/`leaveViewport` events https://github.com/sveltejs/rfcs/pull/24#issuecomment-645392769
+- [Propose a new action here!](https://github.com/sw-yx/svelte-actions/issues/new)
