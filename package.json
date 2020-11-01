@@ -1,0 +1,32 @@
+{
+  "name": "svelte-actions",
+  "version": "0.0.1",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "svelte"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "swyx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sw-yx/svelte-actions.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sw-yx/svelte-actions/issues"
+  },
+  "homepage": "https://github.com/sw-yx/svelte-actions#readme",
+  "description": "",
+  "devDependencies": {
+    "svelte": "^3.29.4",
+    "typescript": "^4.0.5"
+  }
+}
