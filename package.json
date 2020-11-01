@@ -1,11 +1,13 @@
 {
   "name": "svelte-actions",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "module": "dist/index.mjs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
+    "prepublishOnly": "git push && git push --tags && gh-release"
   },
   "keywords": [
     "svelte"
@@ -26,6 +28,8 @@
   "homepage": "https://github.com/sw-yx/svelte-actions#readme",
   "description": "",
   "devDependencies": {
+    "auto-changelog": "^2.2.1",
+    "gh-release": "^4.0.3",
     "svelte": "^3.29.4",
     "typescript": "^4.0.5"
   }
