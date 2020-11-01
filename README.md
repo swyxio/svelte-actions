@@ -10,7 +10,29 @@ do not rely on this library yet!
 
 ### `clickOutside`
 
-to be completed
+`export function clickOutside(node: HTMLElement, params: {enabled: boolean, cb: Function }): ReturnType<Action>`
+
+Call callback when user clicks outside a given element.
+
+Demo: https://svelte.dev/repl/dae848c2157e48ab932106779960f5d5?version=3.19.2
+
+
+```svelte
+<script>
+  import {clickOutside} from 'svelte-actions'
+  let open = true;
+</script>
+
+
+<div use:clickOutside={{ enabled: open, cb: () => open = false }}>
+   <button on:click={() => open = true}>Open</button>
+   {#if open}
+    <span>
+      Opened
+    </span>
+  {/if}
+</div>
+```
 
 ### `longpress`
 
@@ -22,10 +44,13 @@ Demo: https://svelte.dev/tutorial/adding-parameters-to-actions
 
 ```svelte
 <script>
-  import {lazyLoad} from 'svelte-actions'
+  import {longpress} from 'svelte-actions'
 </script>
 
-<img use:lazyLoad={{src:"/myimage"}} alt="">
+<button use:longpress={duration}
+    on:longpress="{() => pressed = true}"
+    on:mouseenter="{() => pressed = false}"
+  >press and hold</button>
 ```
 
 ### `pannable`
@@ -34,7 +59,7 @@ Demo: https://svelte.dev/tutorial/adding-parameters-to-actions
 
 Creates `panStart`, `panMove`, `panEnd` events so you can drag elements. Demo: https://svelte.dev/tutorial/actions
 
-### `lazyLoad`
+### `lazyload`
 
 `export function lazyLoad(node: HTMLElement, attributes: Object): ReturnType<Action>`
 
@@ -44,7 +69,7 @@ Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
 
 ```svelte
 <script>
-  import {lazyLoad} from 'svelte-actions'
+  import {lazyload} from 'svelte-actions'
 </script>
 
 <img use:lazyLoad={{src:"/myimage"}} alt="">

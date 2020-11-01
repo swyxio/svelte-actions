@@ -3,10 +3,39 @@ type Action = (node: HTMLElement, parameters: any) => {
 	destroy?: () => void
 }
 
+/**
+ * 
+ * Call callback when user clicks outside a given element
+ * 
+ * Usage:
+ * <div use:clickOutside={{ enabled: open, cb: () => open = false }}>
+ * 
+ * Demo: https://svelte.dev/repl/dae848c2157e48ab932106779960f5d5?version=3.19.2
+ * 
+ */
+export function clickOutside(node: HTMLElement, params: {enabled: boolean, cb: Function }): ReturnType<Action> {
+  const { enabled: initialEnabled, cb } = params
 
-// export function clickOutside(): ReturnType<Action> {
+    const handleOutsideClick = ({ target }: MouseEvent) => {
+      if (!node.contains(target as Node)) cb(); // typescript hack, not sure how to solve without asserting as Node
+    };
 
-// }
+    function update({enabled}: {enabled: boolean}) {
+      if (enabled) {
+        window.addEventListener('click', handleOutsideClick);
+      } else {
+        window.removeEventListener('click', handleOutsideClick);
+      }
+    }
+    update({ enabled: initialEnabled });
+    return {
+      update,
+      destroy() {
+        window.removeEventListener( 'click', handleOutsideClick );
+      }
+    };
+
+}
 
 
 /**
@@ -113,7 +142,7 @@ export function pannable(node: HTMLElement): ReturnType<Action> {
  * Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
  * 
  */
-export function lazyLoad(node: HTMLElement, attributes: Object): ReturnType<Action> { 
+export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Action> { 
 	let intersecting = false;
 
 	const handleIntersection: IntersectionObserverCallback = (entries) => {
