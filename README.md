@@ -115,7 +115,17 @@ Discuss this action: https://github.com/sw-yx/svelte-actions/issues/2
 
 ## Future actions considering adding
 
+Vote on proposed actions:
+
 - `closeOnEscape`/`closeOnScroll`/`closeOnFocusOutside`: https://github.com/sveltejs/rfcs/pull/24#issuecomment-645094235
-- `selectTextOnFocus`/`clearTextOnEscape`/`blurOnEscape`/`blurOnEnter`:  
+- `selectTextOnFocus`/`clearTextOnEscape`
+- `blurOnEscape`/`blurOnEnter`
 - `viewport`: creates `enterViewport`/`leaveViewport` events https://github.com/sveltejs/rfcs/pull/24#issuecomment-645392769
-- [Propose a new action here!](https://github.com/sw-yx/svelte-actions/issues/new)
+
+[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/closeOn%7BEscape%2CScroll%2CFocusOutside%7D)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/closeOn%7BEscape%2CScroll%2CFocusOutside%7D/vote)
+[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/selectTextOnFocus%2FclearTextOnEscape)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/selectTextOnFocus%2FclearTextOnEscape/vote)
+[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/blurOnEscape%2FblurOnEnter)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/blurOnEscape%2FblurOnEnter/vote)
+[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/viewport)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/viewport/vote)
+
+
+[Propose a new action here!](https://github.com/sw-yx/svelte-actions/issues/new)
