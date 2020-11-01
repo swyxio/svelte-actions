@@ -115,17 +115,20 @@ Discuss this action: https://github.com/sw-yx/svelte-actions/issues/2
 
 ## Future actions considering adding
 
-Vote on proposed actions:
+You can vote for or discuss proposed actions:
 
 - `closeOnEscape`/`closeOnScroll`/`closeOnFocusOutside`: https://github.com/sveltejs/rfcs/pull/24#issuecomment-645094235
 - `selectTextOnFocus`/`clearTextOnEscape`
 - `blurOnEscape`/`blurOnEnter`
 - `viewport`: creates `enterViewport`/`leaveViewport` events https://github.com/sveltejs/rfcs/pull/24#issuecomment-645392769
 
-[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/closeOn%7BEscape%2CScroll%2CFocusOutside%7D)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/closeOn%7BEscape%2CScroll%2CFocusOutside%7D/vote)
-[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/selectTextOnFocus%2FclearTextOnEscape)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/selectTextOnFocus%2FclearTextOnEscape/vote)
-[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/blurOnEscape%2FblurOnEnter)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/blurOnEscape%2FblurOnEnter/vote)
-[![](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/viewport)](https://api.gh-polls.com/poll/01EP26DW0PPDZ5KFKDZZMAVP4A/viewport/vote)
+Click to vote:
+
+[![](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/viewport)](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/viewport/vote)
+[![](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/selectTextOnFocus%2CclearTextOnEscape)](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/selectTextOnFocus%2CclearTextOnEscape/vote)
+[![](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/blurOnEscape%2CblurOnEnter)](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/blurOnEscape%2CblurOnEnter/vote)
+[![](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/closeOn%7BEscape%2CScroll%2CFocusOutside%7D)](https://api.gh-polls.com/poll/01EP26KTTPK3XJMAV132PP1Z6P/closeOn%7BEscape%2CScroll%2CFocusOutside%7D/vote)
+
 
 
 [Propose a new action here!](https://github.com/sw-yx/svelte-actions/issues/new)
