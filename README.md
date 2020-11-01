@@ -91,6 +91,11 @@ Demo: https://svelte.dev/tutorial/actions
 ></div>
 ```
 
+The events contain `clientX` and `clientY` coordinates (or diffs in the case of `panmove`):
+
+- `panstart` event: `{ detail: { x, y }}`
+- `panmove` event: `{ detail: { dx, dy }}`
+- `panend` event: `{ detail: { x, y }}`
 
 Discuss this action: https://github.com/sw-yx/svelte-actions/issues/6
 
