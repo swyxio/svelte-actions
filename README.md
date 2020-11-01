@@ -1,10 +1,11 @@
 # svelte-actions
 
-prototype svelte actions for inclusion into official actions
+A Prototype svelte actions for inclusion into official actions in future.
 
-See RFC: https://github.com/sveltejs/rfcs/pull/24
+- See RFC: https://github.com/sveltejs/rfcs/pull/24
+- Discuss High Level Policy: https://github.com/sw-yx/svelte-actions/issues/7
 
-do not rely on this library yet!
+> ⚠️ Do not rely on this library yet!
 
 ## Install Instructions
 
@@ -19,9 +20,6 @@ Available actions:
 - `pannable`
 - `lazyload`
 
-## Discuss High Level Policy
-
-https://github.com/sw-yx/svelte-actions/issues/7
 
 ## Included Actions
 
