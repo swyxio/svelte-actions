@@ -142,23 +142,34 @@ export function pannable(node: HTMLElement): ReturnType<Action> {
  * Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
  * 
  */
-export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Action> { 
-	let intersecting = false;
+const lazyLoadHandleIntersection: IntersectionObserverCallback = (entries) => {
+	entries.forEach(
+		entry => {
+			if (!entry.isIntersecting) {
+				return
+			}
 
-	const handleIntersection: IntersectionObserverCallback = (entries) => {
-		intersecting = entries[0].isIntersecting;
-		if (entries[0].intersectionRatio > 0) {
+			if (!(entry.target instanceof HTMLElement)) {
+				return;
+			}
+
+			let node = entry.target;
+			let attributes = lazyLoadNodeAttributes.find(item => item.node === node)?.attributes
 			Object.assign(node, attributes)
+
+			lazyLoadObserver.unobserve(node)
 		}
-		if (intersecting) {
-			observer.unobserve(node);
-		}
-	} 
-	const observer = new IntersectionObserver(handleIntersection);
-	observer.observe(node);
+	)
+}
+const lazyLoadObserver = new IntersectionObserver(lazyLoadHandleIntersection);
+let lazyLoadNodeAttributes: Array<{node: HTMLElement, attributes: Object}> = []
+export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Action> {
+	lazyLoadNodeAttributes.push({node, attributes})
+
+	lazyLoadObserver.observe(node);
 	return {
 		destroy() {
-			observer.unobserve(node);
+			lazyLoadObserver.unobserve(node);
 		}
 	};
 }
