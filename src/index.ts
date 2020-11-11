@@ -164,7 +164,7 @@ export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Acti
 }
 
 /**
- * Prevent current tab from beind closed by user
+ * Prevent current tab from being closed by user
  * 
  * Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
  */
@@ -233,4 +233,3 @@ export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
     destroy: removeHandler,
   };
 };
-
