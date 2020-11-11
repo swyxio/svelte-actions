@@ -212,9 +212,9 @@ export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
 
       handler = (e: KeyboardEvent) => {
         if (
-          (params.alt && !e.altKey) ||
-          (params.shift && !e.shiftKey) ||
-          (params.control && !(e.ctrlKey || e.metaKey)) ||
+          (!!params.alt != e.altKey) ||
+          (!!params.shift != e.shiftKey) ||
+          (!!params.control != (e.ctrlKey || e.metaKey)) ||
           params.code != e.code
         )
           return;
