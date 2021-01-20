@@ -15,12 +15,12 @@ npm i svelte-actions
 
 Available actions:
 
-- `clickOutside`
-- `longpress`
-- `pannable`
-- `lazyload`
-- `preventTabClose`
-- `shortcut`
+- `clickOutside`: Call callback when user clicks outside a given element.
+- `longpress`: Creates `longpress` event when mousedown above `duration` milliseconds.
+- `pannable`: Creates `panstart`, `panmove`, `panend` events so you can drag elements.
+- `lazyload`: Lazily attach properties to any DOM element (e.g. `<img>`) when it is in the window.
+- `preventTabClose`: Prevent current tab from being closed by user.
+- `shortcut`: Add a keyboard shortcut to a div or a button.
 
 
 ## Included Actions
@@ -148,7 +148,7 @@ export function shortcut(node: Action, {
 })
 ```
 
-Simplest possible way to add a keyboard shortcut to a div or a button.
+Add a keyboard shortcut to a div or a button.
 
 It either calls a callback or clicks on the node it was put on.
 
