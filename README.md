@@ -15,12 +15,14 @@ npm i svelte-actions
 
 Available actions:
 
-- `clickOutside`: Call callback when user clicks outside a given element.
-- `longpress`: Creates `longpress` event when mousedown above `duration` milliseconds.
-- `pannable`: Creates `panstart`, `panmove`, `panend` events so you can drag elements.
-- `lazyload`: Lazily attach properties to any DOM element (e.g. `<img>`) when it is in the window.
-- `preventTabClose`: Prevent current tab from being closed by user.
-- `shortcut`: Add a keyboard shortcut to a div or a button.
+| name              | description                                                                                                                                                            |
+|-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `clickOutside`    | [Demo](https://svelte.dev/repl/dae848c2157e48ab932106779960f5d5?version=3.19.2) - Call callback when user clicks outside a given element.                              |
+| `longpress`       | [Demo](https://svelte.dev/tutorial/adding-parameters-to-actions) - Creates `longpress` event when mousedown above `duration` milliseconds.                             |
+| `pannable`        | [Demo](https://svelte.dev/tutorial/actions) - Creates `panstart`, `panmove`, `panend` events so you can drag elements.                                                 |
+| `lazyload`        | [Demo](https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2) - Lazily attach properties to any DOM element (e.g. `<img>`) when it is in the window. |
+| `preventTabClose` | [Demo](https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93) - Prevent current tab from being closed by user.                                                      |
+| `shortcut`        | [Demo](https://svelte.dev/repl/acd92c9726634ec7b3d8f5f759824d15) - Add a keyboard shortcut to a div or a button.                                                       |
 
 
 ## Included Actions
