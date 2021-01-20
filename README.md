@@ -117,7 +117,7 @@ Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
 
 Discuss this action: https://github.com/sw-yx/svelte-actions/issues/2
 
-### ``preventTabClose`
+### `preventTabClose`
 
 `export function preventTabClose(_, enabled: boolean)`
 
@@ -136,7 +136,7 @@ Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
 
 Discuss this action: https://github.com/sw-yx/svelte-actions/pull/11
 
-### ``shortcut`
+### `shortcut`
 
 ```ts
 export function shortcut(node: Action, {
