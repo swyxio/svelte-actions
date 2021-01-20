@@ -19,6 +19,8 @@ Available actions:
 - `longpress`
 - `pannable`
 - `lazyload`
+- `preventTabClose`
+- `shortcut`
 
 
 ## Included Actions
@@ -115,6 +117,55 @@ Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
 
 Discuss this action: https://github.com/sw-yx/svelte-actions/issues/2
 
+### ``preventTabClose`
+
+`export function preventTabClose(_, enabled: boolean)`
+
+Prevent current tab from being closed by user.
+
+Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
+
+```svelte
+<script>
+  import {preventTabClose} from 'svelte-actions'
+  let isOn = false
+</script>
+
+<button use:preventTabClose={isOn} on:click={() => isOn = !isOn}>Click me</button>
+```
+
+Discuss this action: https://github.com/sw-yx/svelte-actions/pull/11
+
+### ``shortcut`
+
+```ts
+export function shortcut(node: Action, {
+  control?: boolean;
+  shift?: boolean;
+  alt?: boolean;
+  code: string;
+  callback?: () => void;
+})
+```
+
+Simplest possible way to add a keyboard shortcut to a div or a button.
+
+It either calls a callback or clicks on the node it was put on.
+
+Demo: https://svelte.dev/repl/acd92c9726634ec7b3d8f5f759824d15
+
+```svelte
+<script>
+  import {shortcut} from 'svelte-actions'
+	let buttonCount = 0, divCount = 0;
+</script>
+
+<button use:shortcut={{shift: true, code: 'Digit1'}} on:click={() => buttonCount++}>
+	Triggers a click on the button (Shift + 1)				
+</button>
+
+Clicked: {buttonCount}
+```
 
 ## Future actions considering adding
 

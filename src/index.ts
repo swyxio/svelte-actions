@@ -173,3 +173,74 @@ export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Acti
 		}
 	};
 }
+
+/**
+ * Prevent current tab from being closed by user
+ * 
+ * Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
+ */
+export const preventTabClose: Action = (_, enabled: boolean) => {
+  const handler = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = '';
+    },
+    setHandler = (shouldWork: boolean) =>
+      shouldWork ?
+        window.addEventListener('beforeunload', handler) :
+        window.removeEventListener('beforeunload', handler);
+
+  setHandler(enabled);
+
+  return {
+    update: setHandler,
+    destroy: () => setHandler(false),
+  };
+};
+
+/**
+ * Simplest possible way to add a keyboard shortcut to a div or a button.
+ * It either calls a callback or clicks on the node it was put on.
+ * 
+ * Demo: https://svelte.dev/repl/acd92c9726634ec7b3d8f5f759824d15
+ */
+
+export type ShortcutSetting = {
+  control?: boolean;
+  shift?: boolean;
+  alt?: boolean;
+
+  code: string;
+
+  callback?: () => void;
+};
+export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
+  let handler: ((e: KeyboardEvent) => void) | undefined;
+
+  const removeHandler = () => window.removeEventListener('keydown', handler!),
+    setHandler = () => {
+      removeHandler();
+      if (!params) return;
+
+      handler = (e: KeyboardEvent) => {
+        if (
+          (!!params.alt != e.altKey) ||
+          (!!params.shift != e.shiftKey) ||
+          (!!params.control != (e.ctrlKey || e.metaKey)) ||
+          params.code != e.code
+        )
+          return;
+
+        e.preventDefault();
+
+        params.callback ? params.callback() : node.click();
+      };
+      window.addEventListener('keydown', handler);
+    };
+
+  setHandler();
+
+  return {
+    update: setHandler,
+    destroy: removeHandler,
+  };
+};
