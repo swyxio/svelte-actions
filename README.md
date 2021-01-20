@@ -1,9 +1,6 @@
 # svelte-actions
 
-A Prototype svelte actions for inclusion into official actions in future.
-
-- See RFC: https://github.com/sveltejs/rfcs/pull/24
-- Discuss High Level Policy: https://github.com/sw-yx/svelte-actions/issues/7
+A Prototype svelte actions for inclusion into official actions in future. [See RFC](https://github.com/sveltejs/rfcs/pull/24) and [Discuss High Level Policy](https://github.com/sw-yx/svelte-actions/issues/7).
 
 > ⚠️ Do not rely on this library yet!
 
