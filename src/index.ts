@@ -161,9 +161,13 @@ const lazyLoadHandleIntersection: IntersectionObserverCallback = (entries) => {
 		}
 	)
 }
-const lazyLoadObserver = new IntersectionObserver(lazyLoadHandleIntersection);
+
+let lazyLoadObserver: IntersectionObserver;
 let lazyLoadNodeAttributes: Array<{node: HTMLElement, attributes: Object}> = []
 export function lazyload(node: HTMLElement, attributes: Object): ReturnType<Action> {
+	if (!lazyLoadObserver) {
+		lazyLoadObserver = new IntersectionObserver(lazyLoadHandleIntersection);
+	}
 	lazyLoadNodeAttributes.push({node, attributes})
 
 	lazyLoadObserver.observe(node);
