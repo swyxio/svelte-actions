@@ -1,4 +1,4 @@
-import { clickOutside } from '../src/index';
+import { clickOutside } from './clickOutside';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 
@@ -41,7 +41,7 @@ describe('clickOutside', function() {
 		const cb = sinon.fake();
 		const action = clickOutside(element, { enabled: true, cb });
 
-		action.update({ enabled: false });
+		action.update!({ enabled: false });
 		element.click();
 		assert.ok(cb.notCalled);
 	});
