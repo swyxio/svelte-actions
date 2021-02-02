@@ -174,6 +174,7 @@ You can vote for or discuss proposed actions:
 - `selectTextOnFocus`/`clearTextOnEscape`
 - `blurOnEscape`/`blurOnEnter`
 - `viewport`: creates `enterViewport`/`leaveViewport` events https://github.com/sveltejs/rfcs/pull/24#issuecomment-645392769
+- `activeLink`: adds a class if the current link is "active" https://github.com/sw-yx/svelte-actions/issues/13#issuecomment-767844419
 
 Click to vote:
 
