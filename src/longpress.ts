@@ -16,7 +16,7 @@ export function longpress(node: HTMLElement, duration: number): ReturnType<Actio
   let timer: number;
   
   const handleMousedown = () => {
-    timer = setTimeout(() => {
+    timer = window.setTimeout(() => {
       node.dispatchEvent(
         new CustomEvent('longpress')
       );
@@ -24,7 +24,7 @@ export function longpress(node: HTMLElement, duration: number): ReturnType<Actio
   };
   
   const handleMouseup = () => {
-    clearTimeout(timer)
+    clearTimeout(timer);
   };
 
   node.addEventListener('mousedown', handleMousedown);
