@@ -20,7 +20,7 @@ export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
   let handler: ((e: KeyboardEvent) => void) | undefined;
 
   const removeHandler = () => window.removeEventListener('keydown', handler!),
-    setHandler = () => {
+    setHandler = (params: ShortcutSetting | undefined) => {
       removeHandler();
       if (!params) return;
 
@@ -40,7 +40,7 @@ export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
       window.addEventListener('keydown', handler);
     };
 
-  setHandler();
+  setHandler(params);
 
   return {
     update: setHandler,
