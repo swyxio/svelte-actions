@@ -2,7 +2,7 @@ import * as jsdom from 'jsdom';
 
 const window = new jsdom.JSDOM('<main></main>').window;
 global.document = window.document;
-global.window = window;
+global.window = window as any;
 global.CustomEvent = window.CustomEvent;
 global.HTMLElement = window.HTMLElement;
 

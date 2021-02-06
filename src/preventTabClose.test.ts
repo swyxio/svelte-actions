@@ -28,7 +28,7 @@ describe('preventTabClose', function() {
 		window.dispatchEvent(event);
 
 		assert.ok(preventDefaultSpy.calledOnce);
-		assert.ok(returnValSpy.set.calledWith(''));
+		assert.ok(returnValSpy.set.calledWith('' as any));
 	});
 
 	it('does not cancel beforeunload event when disabled', function() {
