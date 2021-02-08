@@ -4,3 +4,4 @@ export * from './pannable';
 export * from './lazyload';
 export * from './preventTabClose';
 export * from './shortcut';
+export * from './clickToCopy';
