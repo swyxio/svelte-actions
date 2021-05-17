@@ -19,7 +19,7 @@ Available actions:
 | `pannable`        | [Demo](https://svelte.dev/tutorial/actions) - Creates `panstart`, `panmove`, `panend` events so you can drag elements.                                                 |
 | `lazyload`        | [Demo](https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2) - Lazily attach properties to any DOM element (e.g. `<img>`) when it is in the window. |
 | `preventTabClose` | [Demo](https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93) - Prevent current tab from being closed by user.                                                      |
-| `shortcut`        | [Demo](https://svelte.dev/repl/acd92c9726634ec7b3d8f5f759824d15) - Add a keyboard shortcut to a div or a button.                                                       |
+| `shortcut`        | [Demo](https://svelte.dev/repl/aca51811429c4127b1e7ff7eb67a172f?version=3.38.2) - Add a keyboard shortcut to a div or a button.                                                       |
 
 
 ## Included Actions
@@ -151,7 +151,7 @@ Add a keyboard shortcut to a div or a button.
 
 It either calls a callback or clicks on the node it was put on.
 
-Demo: https://svelte.dev/repl/acd92c9726634ec7b3d8f5f759824d15
+Demo: https://svelte.dev/repl/aca51811429c4127b1e7ff7eb67a172f?version=3.38.2
 
 ```svelte
 <script>
