@@ -26,7 +26,12 @@ Available actions:
 
 ### `clickOutside`
 
-`export function clickOutside(node: HTMLElement, params: {enabled: boolean, cb: Function }): ReturnType<Action>`
+```ts
+export function clickOutside(node: HTMLElement, params: {
+	enabled: boolean, 
+	callback?: (node?: HTMLElement) => void;
+}): ReturnType<Action>
+```
 
 Call callback when user clicks outside a given element.
 
@@ -40,7 +45,7 @@ Demo: https://svelte.dev/repl/dae848c2157e48ab932106779960f5d5?version=3.19.2
 </script>
 
 
-<div use:clickOutside={{ enabled: open, cb: () => open = false }}>
+<div use:clickOutside={{ enabled: open, callback: () => open = false }}>
    <button on:click={() => open = true}>Open</button>
    {#if open}
     <span>
@@ -143,7 +148,7 @@ export function shortcut(node: Action, {
   shift?: boolean;
   alt?: boolean;
   code: string;
-  callback?: () => void;
+  callback?: (node?: HTMLElement) => void;
 })
 ```
 
