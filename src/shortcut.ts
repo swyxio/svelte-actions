@@ -14,7 +14,7 @@ export type ShortcutSetting = {
 
   code: string;
 
-  callback?: (node: HTMLElement) => void;
+  callback?: (node?: HTMLElement) => void;
 };
 export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
   let handler: ((e: KeyboardEvent) => void) | undefined;
