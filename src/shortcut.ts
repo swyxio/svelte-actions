@@ -14,7 +14,7 @@ export type ShortcutSetting = {
 
   code: string;
 
-  callback?: () => void;
+  callback?: (node?: HTMLElement) => void;
 };
 export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
   let handler: ((e: KeyboardEvent) => void) | undefined;
@@ -35,7 +35,7 @@ export const shortcut: Action = (node, params: ShortcutSetting | undefined) => {
 
         e.preventDefault();
 
-        params.callback ? params.callback() : node.click();
+        params.callback ? params.callback(node) : node.click();
       };
       window.addEventListener('keydown', handler);
     };

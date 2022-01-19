@@ -14,7 +14,7 @@ export function clickOutside(node: HTMLElement, params: {enabled: boolean, cb: F
   const { enabled: initialEnabled, cb } = params
 
     const handleOutsideClick = ({ target }: MouseEvent) => {
-      if (!node.contains(target as Node)) cb(); // typescript hack, not sure how to solve without asserting as Node
+      if (!node.contains(target as Node)) cb(node); // typescript hack, not sure how to solve without asserting as Node
     };
 
     function update({enabled}: {enabled: boolean}) {
