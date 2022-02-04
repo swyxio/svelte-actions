@@ -37,7 +37,7 @@
     "auto-changelog": "^2.2.1",
     "gh-release": "^4.0.3",
     "jsdom": "^16.4.0",
-    "mocha": "^8.2.1",
+    "mocha": "^9.2.0",
     "sinon": "^9.2.3",
     "sucrase": "^3.17.0",
     "svelte": "^3.29.4",
