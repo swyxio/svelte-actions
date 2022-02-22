@@ -6,7 +6,7 @@ import { Action } from './types';
  * Demo: https://svelte.dev/tutorial/actions
  *
  */
-export const pannable: Action<undefined> = (node: HTMLElement) => {
+export const pannable: Action<void> = (node: HTMLElement) => {
 	let x: number;
 	let y: number;
 
