@@ -1,12 +1,12 @@
-import { Action } from './types';
+import { Action } from "./types";
 
 /**
  * Creates panStart, panMove, panEnd events so you can drag elements.
- * 
+ *
  * Demo: https://svelte.dev/tutorial/actions
- * 
+ *
  */
-export function pannable(node: HTMLElement): ReturnType<Action> {
+export const pannable: Action<undefined> = (node: HTMLElement) => {
 	let x: number;
 	let y: number;
 
@@ -14,12 +14,14 @@ export function pannable(node: HTMLElement): ReturnType<Action> {
 		x = event.clientX;
 		y = event.clientY;
 
-		node.dispatchEvent(new CustomEvent('panstart', {
-			detail: { x, y }
-		}));
+		node.dispatchEvent(
+			new CustomEvent("panstart", {
+				detail: { x, y },
+			})
+		);
 
-		window.addEventListener('mousemove', handleMousemove);
-		window.addEventListener('mouseup', handleMouseup);
+		window.addEventListener("mousemove", handleMousemove);
+		window.addEventListener("mouseup", handleMouseup);
 	}
 
 	function handleMousemove(event: MouseEvent) {
@@ -28,28 +30,32 @@ export function pannable(node: HTMLElement): ReturnType<Action> {
 		x = event.clientX;
 		y = event.clientY;
 
-		node.dispatchEvent(new CustomEvent('panmove', {
-			detail: { x, y, dx, dy }
-		}));
+		node.dispatchEvent(
+			new CustomEvent("panmove", {
+				detail: { x, y, dx, dy },
+			})
+		);
 	}
 
 	function handleMouseup(event: MouseEvent) {
 		x = event.clientX;
 		y = event.clientY;
 
-		node.dispatchEvent(new CustomEvent('panend', {
-			detail: { x, y }
-		}));
+		node.dispatchEvent(
+			new CustomEvent("panend", {
+				detail: { x, y },
+			})
+		);
 
-		window.removeEventListener('mousemove', handleMousemove);
-		window.removeEventListener('mouseup', handleMouseup);
+		window.removeEventListener("mousemove", handleMousemove);
+		window.removeEventListener("mouseup", handleMouseup);
 	}
 
-	node.addEventListener('mousedown', handleMousedown);
+	node.addEventListener("mousedown", handleMousedown);
 
 	return {
 		destroy() {
-			node.removeEventListener('mousedown', handleMousedown);
-		}
+			node.removeEventListener("mousedown", handleMousedown);
+		},
 	};
-}
+};

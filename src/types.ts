@@ -1,4 +1,7 @@
-export type Action = (node: HTMLElement, parameters: any) => {
-	update?: (parameters: any) => void,
-	destroy?: () => void
-}
+export type Action<Params = any> = (
+	node: HTMLElement,
+	parameters: Params
+) => {
+	update?: (parameters: Params) => void;
+	destroy?: () => void;
+};
