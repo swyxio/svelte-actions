@@ -16,12 +16,12 @@ export type ShortcutSetting = {
 
 	callback?: (node?: HTMLElement) => void;
 };
-export const shortcut: Action<ShortcutSetting | undefined> = (node, params) => {
+export const shortcut: Action<ShortcutSetting> = (node, params) => {
 	let handler: ((e: KeyboardEvent) => void) | undefined;
 
 	const removeHandler = () => window.removeEventListener('keydown', handler!);
 
-	const setHandler = (params: ShortcutSetting | undefined) => {
+	const setHandler = (params: ShortcutSetting) => {
 		removeHandler();
 		if (!params) return;
 
