@@ -1,4 +1,4 @@
-import { Action } from "./types";
+import { Action } from './types';
 
 /**
  * Creates `longpress` event when mousedown above `duration` milliseconds.
@@ -17,7 +17,7 @@ export const longpress: Action<number> = (node, duration) => {
 
 	const handleMousedown = () => {
 		timer = window.setTimeout(() => {
-			node.dispatchEvent(new CustomEvent("longpress"));
+			node.dispatchEvent(new CustomEvent('longpress'));
 		}, duration);
 	};
 
@@ -25,16 +25,16 @@ export const longpress: Action<number> = (node, duration) => {
 		clearTimeout(timer);
 	};
 
-	node.addEventListener("mousedown", handleMousedown);
-	node.addEventListener("mouseup", handleMouseup);
+	node.addEventListener('mousedown', handleMousedown);
+	node.addEventListener('mouseup', handleMouseup);
 
 	return {
 		update(newDuration) {
 			duration = newDuration;
 		},
 		destroy() {
-			node.removeEventListener("mousedown", handleMousedown);
-			node.removeEventListener("mouseup", handleMouseup);
+			node.removeEventListener('mousedown', handleMousedown);
+			node.removeEventListener('mouseup', handleMouseup);
 		},
 	};
 };

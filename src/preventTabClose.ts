@@ -1,4 +1,4 @@
-import { Action } from "./types";
+import { Action } from './types';
 
 /**
  * Prevent current tab from being closed by user
@@ -8,12 +8,12 @@ import { Action } from "./types";
 export const preventTabClose: Action<boolean> = (_, enabled) => {
 	const handler = (e: BeforeUnloadEvent) => {
 			e.preventDefault();
-			e.returnValue = "";
+			e.returnValue = '';
 		},
 		setHandler = (shouldWork: boolean) =>
 			shouldWork
-				? window.addEventListener("beforeunload", handler)
-				: window.removeEventListener("beforeunload", handler);
+				? window.addEventListener('beforeunload', handler)
+				: window.removeEventListener('beforeunload', handler);
 
 	setHandler(enabled);
 

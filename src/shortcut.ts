@@ -1,4 +1,4 @@
-import { Action } from "./types";
+import { Action } from './types';
 
 /**
  * Simplest possible way to add a keyboard shortcut to a div or a button.
@@ -19,7 +19,7 @@ export type ShortcutSetting = {
 export const shortcut: Action<ShortcutSetting | undefined> = (node, params) => {
 	let handler: ((e: KeyboardEvent) => void) | undefined;
 
-	const removeHandler = () => window.removeEventListener("keydown", handler!);
+	const removeHandler = () => window.removeEventListener('keydown', handler!);
 
 	const setHandler = (params: ShortcutSetting | undefined) => {
 		removeHandler();
@@ -38,7 +38,7 @@ export const shortcut: Action<ShortcutSetting | undefined> = (node, params) => {
 
 			params.callback ? params.callback(node) : node.click();
 		};
-		window.addEventListener("keydown", handler);
+		window.addEventListener('keydown', handler);
 	};
 
 	setHandler(params);

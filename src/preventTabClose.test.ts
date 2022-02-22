@@ -3,24 +3,24 @@ import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 
-describe('preventTabClose', function() {
+describe('preventTabClose', function () {
 	let element: HTMLElement;
 	let action: ReturnType<Action>;
 
-	before(function() {
+	before(function () {
 		element = document.createElement('div');
 		document.body.appendChild(element);
 	});
 
-	after(function() {
+	after(function () {
 		element.remove();
 	});
 
-	afterEach(function() {
+	afterEach(function () {
 		action.destroy!();
 	});
 
-	it('cancels beforeunload event when enabled', function() {
+	it('cancels beforeunload event when enabled', function () {
 		action = preventTabClose(element, true);
 		const event = new window.Event('beforeunload');
 		const preventDefaultSpy = sinon.spy(event, 'preventDefault');
@@ -31,7 +31,7 @@ describe('preventTabClose', function() {
 		assert.ok(returnValSpy.set.calledWith('' as any));
 	});
 
-	it('does not cancel beforeunload event when disabled', function() {
+	it('does not cancel beforeunload event when disabled', function () {
 		action = preventTabClose(element, false);
 		const event = new window.Event('beforeunload');
 		const preventDefaultSpy = sinon.spy(event, 'preventDefault');
@@ -40,7 +40,7 @@ describe('preventTabClose', function() {
 		assert.ok(preventDefaultSpy.notCalled);
 	});
 
-	it('updates enabled parameter', function() {
+	it('updates enabled parameter', function () {
 		action = preventTabClose(element, false);
 		const event = new window.Event('beforeunload');
 		const preventDefaultSpy = sinon.spy(event, 'preventDefault');

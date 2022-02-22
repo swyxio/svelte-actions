@@ -1,4 +1,4 @@
-import { Action } from "./types";
+import { Action } from './types';
 
 /**
  * Attach onto any image to lazy load it
@@ -19,9 +19,7 @@ const lazyLoadHandleIntersection: IntersectionObserverCallback = (entries) => {
 		}
 
 		let node = entry.target;
-		let attributes = lazyLoadNodeAttributes.find(
-			(item) => item.node === node
-		)?.attributes;
+		let attributes = lazyLoadNodeAttributes.find((item) => item.node === node)?.attributes;
 		Object.assign(node, attributes);
 
 		lazyLoadObserver.unobserve(node);
