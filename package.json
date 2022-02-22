@@ -12,7 +12,8 @@
     "preversion": "npm run build",
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "prepublishOnly": "git push && git push --tags && gh-release",
-    "test": "mocha ./src/test.ts"
+    "test": "mocha ./src/test.ts",
+    "format": "prettier --write src/**/*.ts"
   },
   "keywords": [
     "svelte"
@@ -41,6 +42,7 @@
     "gh-release": "^4.0.3",
     "jsdom": "^16.4.0",
     "mocha": "^9.2.0",
+    "prettier": "^2.5.1",
     "sinon": "^9.2.3",
     "sucrase": "^3.17.0",
     "svelte": "^3.29.4",
