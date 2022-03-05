@@ -13,6 +13,8 @@ import { Action } from './types';
 type Params = { enabled: boolean; cb: (node: HTMLElement) => void };
 
 export const clickOutside: Action<Params> = (node, params) => {
+	if (!params) throw new Error('clickOutside: missing params');
+
 	const { enabled: initialEnabled, cb } = params;
 
 	const handleOutsideClick = ({ target }: MouseEvent) => {

@@ -5,7 +5,7 @@ import { Action } from './types';
  *
  * Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
  */
-export const preventTabClose: Action<boolean> = (_, enabled) => {
+export const preventTabClose: Action<boolean> = (_, enabled = false) => {
 	const handler = (e: BeforeUnloadEvent) => {
 			e.preventDefault();
 			e.returnValue = '';

@@ -13,30 +13,30 @@ export type ShortcutSetting = {
 	alt?: boolean;
 
 	code: string;
-
-	callback?: (node?: HTMLElement) => void;
+	enabled?: boolean;
+	callback?: (node: HTMLElement) => void;
 };
 export const shortcut: Action<ShortcutSetting> = (node, params) => {
 	let handler: ((e: KeyboardEvent) => void) | undefined;
 
 	const removeHandler = () => window.removeEventListener('keydown', handler!);
 
-	const setHandler = (params: ShortcutSetting) => {
+	const setHandler = (_params: typeof params) => {
 		removeHandler();
-		if (!params) return;
 
 		handler = (e: KeyboardEvent) => {
 			if (
-				!!params.alt != e.altKey ||
-				!!params.shift != e.shiftKey ||
-				!!params.control != (e.ctrlKey || e.metaKey) ||
-				params.code != e.code
+				!_params?.enabled ||
+				!!_params.alt != e.altKey ||
+				!!_params.shift != e.shiftKey ||
+				!!_params.control != (e.ctrlKey || e.metaKey) ||
+				_params.code != e.code
 			)
 				return;
 
 			e.preventDefault();
 
-			params.callback ? params.callback(node) : node.click();
+			_params.callback ? _params.callback(node) : node.click();
 		};
 		window.addEventListener('keydown', handler);
 	};
