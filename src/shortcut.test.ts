@@ -1,11 +1,11 @@
-import { shortcut } from './shortcut';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { shortcut } from './shortcut';
+
 
 describe('shortcut', function () {
 	let element: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof shortcut>;
 
 	const spaceKeyCode = 'Space';
 

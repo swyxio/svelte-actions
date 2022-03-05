@@ -1,9 +1,8 @@
-export interface ActionReturn<Parameter = any> {
+export interface ActionReturn<Parameter = void> {
 	update?: (parameter: Parameter) => void;
 	destroy?: () => void;
 }
 
-export interface Action<Parameter = any> {
-	<Node extends HTMLElement>(node: Node, parameter?: Parameter): void | ActionReturn<Parameter>;
+export interface Action<Parameter = void> {
+	<Node extends HTMLElement>(node: Node, parameter: Parameter): ActionReturn<Parameter>;
 }
-

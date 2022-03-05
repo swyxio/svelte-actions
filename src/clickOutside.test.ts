@@ -1,12 +1,11 @@
-import { clickOutside } from './clickOutside';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { clickOutside } from './clickOutside';
 
 describe('clickOutside', function () {
 	let element: HTMLElement;
 	let sibling: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof clickOutside>;
 
 	before(function () {
 		element = document.createElement('div');
@@ -52,6 +51,7 @@ describe('clickOutside', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: true, cb });
 
+		// @ts-expect-error
 		action.update!({ enabled: false });
 		element.click();
 		assert.ok(cb.notCalled);

@@ -1,11 +1,10 @@
 import { preventTabClose } from './preventTabClose';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
 
 describe('preventTabClose', function () {
 	let element: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof preventTabClose>;
 
 	before(function () {
 		element = document.createElement('div');
