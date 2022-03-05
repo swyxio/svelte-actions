@@ -1,11 +1,10 @@
-import { lazyload } from './lazyload';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { lazyload } from './lazyload';
 
 describe('lazyload', function () {
 	let element: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof lazyload>;
 	let intersectionObserverConstructorSpy: sinon.SinonSpy;
 	const observeFake = sinon.fake();
 	const unobserveFake = sinon.fake();

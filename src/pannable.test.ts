@@ -1,11 +1,10 @@
-import { pannable } from './pannable';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { pannable } from './pannable';
 
 describe('pannable', function () {
 	let element: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof pannable>;
 
 	before(function () {
 		element = document.createElement('div');

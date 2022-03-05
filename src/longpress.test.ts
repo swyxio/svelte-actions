@@ -1,12 +1,11 @@
-import { longpress } from './longpress';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { longpress } from './longpress';
 
 describe('longpress', function () {
 	let element: HTMLElement;
 	let cb = sinon.fake();
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof longpress>;
 	let clock: sinon.SinonFakeTimers;
 
 	before(function () {
