@@ -2,7 +2,6 @@ import * as assert from 'assert';
 import * as sinon from 'sinon';
 import { shortcut } from './shortcut';
 
-
 describe('shortcut', function () {
 	let element: HTMLElement;
 	let action: ReturnType<typeof shortcut>;
