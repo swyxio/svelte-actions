@@ -4,12 +4,13 @@
   "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc --module es2015 --target es5 --outdir dist",
+    "build": "tsc",
     "preversion": "npm run build",
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "prepublishOnly": "git push && git push --tags && gh-release",
     "test": "mocha ./src/test.ts",
-    "format": "prettier --write src/**/*.ts"
+    "format": "prettier --write src/**/*.ts",
+    "check": "tsc --noEmit"
   },
   "keywords": [
     "svelte"
