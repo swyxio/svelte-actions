@@ -13,9 +13,7 @@ const intersection_handler: IntersectionObserverCallback = (entries) => {
 
 let lazy_load_observer: IntersectionObserver;
 function observer() {
-	return (
-		lazy_load_observer || (lazy_load_observer = new IntersectionObserver(intersection_handler))
-	);
+	return (lazy_load_observer ??= new IntersectionObserver(intersection_handler));
 }
 /**
  * Attach onto any image to lazy load it
