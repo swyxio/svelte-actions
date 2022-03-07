@@ -2,41 +2,40 @@ import { Action } from './types';
 
 /**
  * Creates `longpress` event when mousedown above `duration` milliseconds.
- * 
- * Usage:
- * 
- *<button use:longpress={duration}
-    on:longpress="{() => pressed = true}"
-    on:mouseenter="{() => pressed = false}"
-  >press and hold</button>
  *
+ * @example
+ * ```svelte
+ * <button use:longpress={duration} on:longpress={() => alert("longpress")}>
+ * press and hold
+ * </button>
+ *```
  * Demo: https://svelte.dev/tutorial/adding-parameters-to-actions
  */
-export function longpress(node: HTMLElement, duration: number): ReturnType<Action> {
-  let timer: number;
-  
-  const handleMousedown = () => {
-    timer = window.setTimeout(() => {
-      node.dispatchEvent(
-        new CustomEvent('longpress')
-      );
-    }, duration);
-  };
-  
-  const handleMouseup = () => {
-    clearTimeout(timer);
-  };
+export const longpress: Action<number> = (node, duration) => {
+	let timer: number;
 
-  node.addEventListener('mousedown', handleMousedown);
-  node.addEventListener('mouseup', handleMouseup);
+	function handle_mouse_down() {
+		timer = window.setTimeout(() => {
+			node.dispatchEvent(new CustomEvent('longpress'));
+		}, duration);
+	}
 
-  return {
-    update(newDuration) {
-      duration = newDuration;
-    },
-    destroy() {
-      node.removeEventListener('mousedown', handleMousedown);
-      node.removeEventListener('mouseup', handleMouseup);
-    }
-  };
-}
+	function handle_mouse_up() {
+		clearTimeout(timer);
+	}
+
+	node.addEventListener('mousedown', handle_mouse_down);
+	node.addEventListener('mouseup', handle_mouse_up);
+
+	return {
+		update(newDuration) {
+			handle_mouse_up();
+			duration = newDuration;
+		},
+		destroy() {
+			handle_mouse_up();
+			node.removeEventListener('mousedown', handle_mouse_down);
+			node.removeEventListener('mouseup', handle_mouse_up);
+		},
+	};
+};

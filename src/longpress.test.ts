@@ -1,32 +1,31 @@
-import { longpress } from './longpress';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { longpress } from './longpress';
 
-describe('longpress', function() {
+describe('longpress', function () {
 	let element: HTMLElement;
 	let cb = sinon.fake();
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof longpress>;
 	let clock: sinon.SinonFakeTimers;
 
-	before(function() {
+	before(function () {
 		element = document.createElement('div');
 		element.addEventListener('longpress', cb);
 		document.body.appendChild(element);
 		clock = sinon.useFakeTimers();
 	});
 
-	after(function() {
+	after(function () {
 		element.remove();
 		clock.restore();
 	});
 
-	afterEach(function() {
+	afterEach(function () {
 		action.destroy!();
 		cb.resetHistory();
 	});
 
-	it('dispatches longpress event when mousedown more than duration', function() {
+	it('dispatches longpress event when mousedown more than duration', function () {
 		const duration = 10;
 		action = longpress(element, duration);
 		element.dispatchEvent(new window.MouseEvent('mousedown'));
@@ -35,7 +34,7 @@ describe('longpress', function() {
 		assert.ok(cb.calledOnce);
 	});
 
-	it('does not dispatch longpress event when mousedown less than duration', function() {
+	it('does not dispatch longpress event when mousedown less than duration', function () {
 		action = longpress(element, 100);
 		element.dispatchEvent(new window.MouseEvent('mousedown'));
 		clock.tick(10);
@@ -43,7 +42,7 @@ describe('longpress', function() {
 		assert.ok(cb.notCalled);
 	});
 
-	it('updates duration', function() {
+	it('updates duration', function () {
 		const newDuration = 10;
 		action = longpress(element, 500);
 		action.update!(newDuration);

@@ -1,18 +1,16 @@
 {
   "name": "svelte-actions",
   "version": "0.2.1",
-  "module": "dist/esm/index.mjs",
-  "main": "dist/index.js",
+  "type": "module",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc && npm run build:esm && npm run rename:esm",
-    "build:esm": "tsc --module es2015 --target es5 --outdir dist/esm",
-    "rename:esm": "find ./dist/esm -name \"*.js\" -exec bash -c 'mv \"$1\" \"${1%.js}\".mjs' - '{}' \\;",
-    "copy:esm": "mv ./dist/esm/*.mjs ./dist/",
+    "build": "tsc",
     "preversion": "npm run build",
     "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
     "prepublishOnly": "git push && git push --tags && gh-release",
-    "test": "mocha ./src/test.ts"
+    "test": "mocha ./src/test.ts",
+    "format": "prettier --write src/**/*.ts",
+    "check": "tsc --noEmit"
   },
   "keywords": [
     "svelte"
@@ -41,9 +39,13 @@
     "gh-release": "^4.0.3",
     "jsdom": "^16.4.0",
     "mocha": "^9.2.0",
+    "prettier": "^2.5.1",
     "sinon": "^9.2.3",
     "sucrase": "^3.17.0",
     "svelte": "^3.29.4",
     "typescript": "^4.0.5"
+  },
+  "exports": {
+    "import": "./dist/index.js"
   }
 }

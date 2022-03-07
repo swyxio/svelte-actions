@@ -1,30 +1,29 @@
-import { clickOutside } from './clickOutside';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { clickOutside } from './clickOutside';
 
-describe('clickOutside', function() {
+describe('clickOutside', function () {
 	let element: HTMLElement;
 	let sibling: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof clickOutside>;
 
-	before(function() {
+	before(function () {
 		element = document.createElement('div');
 		sibling = document.createElement('div');
 		document.body.appendChild(element);
 		document.body.appendChild(sibling);
 	});
 
-	after(function() {
+	after(function () {
 		element.remove();
 		sibling.remove();
 	});
 
-	afterEach(function() {
+	afterEach(function () {
 		action.destroy!();
 	});
 
-	it('calls callback on outside click', function() {
+	it('calls callback on outside click', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: true, cb });
 
@@ -32,7 +31,7 @@ describe('clickOutside', function() {
 		assert.ok(cb.calledOnce);
 	});
 
-	it('does not call callback when disabled', function() {
+	it('does not call callback when disabled', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: false, cb });
 
@@ -40,7 +39,7 @@ describe('clickOutside', function() {
 		assert.ok(cb.notCalled);
 	});
 
-	it('does not call callback when element clicked', function() {
+	it('does not call callback when element clicked', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: true, cb });
 
@@ -48,10 +47,11 @@ describe('clickOutside', function() {
 		assert.ok(cb.notCalled);
 	});
 
-	it('updates parameters', function() {
+	it('updates parameters', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: true, cb });
 
+		// @ts-expect-error
 		action.update!({ enabled: false });
 		element.click();
 		assert.ok(cb.notCalled);

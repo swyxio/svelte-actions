@@ -2,23 +2,30 @@ import { Action } from './types';
 
 /**
  * Prevent current tab from being closed by user
- * 
+ *
  * Demo: https://svelte.dev/repl/a95db12c1b46433baac2817a0963dc93
+ *
+ * @example
+ * ```svelte
+ * <div use:preventTabClose={true}>
+ * ```
  */
-export const preventTabClose: Action = (_, enabled: boolean) => {
-  const handler = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      e.returnValue = '';
-    },
-    setHandler = (shouldWork: boolean) =>
-      shouldWork ?
-        window.addEventListener('beforeunload', handler) :
-        window.removeEventListener('beforeunload', handler);
+export const preventTabClose: Action<boolean> = (_, enabled: boolean) => {
+	function handler(e: BeforeUnloadEvent) {
+		e.preventDefault();
+		e.returnValue = '';
+	}
 
-  setHandler(enabled);
+	function set_handler(shouldWork: boolean) {
+		(shouldWork ? window.addEventListener : window.removeEventListener)('beforeunload', handler);
+	}
 
-  return {
-    update: setHandler,
-    destroy: () => setHandler(false),
-  };
+	set_handler(enabled);
+
+	return {
+		update: set_handler,
+		destroy() {
+			set_handler(false);
+		},
+	};
 };

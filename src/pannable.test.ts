@@ -1,26 +1,25 @@
-import { pannable } from './pannable';
-import { Action } from './types';
 import * as assert from 'assert';
 import * as sinon from 'sinon';
+import { pannable } from './pannable';
 
-describe('pannable', function() {
+describe('pannable', function () {
 	let element: HTMLElement;
-	let action: ReturnType<Action>;
+	let action: ReturnType<typeof pannable>;
 
-	before(function() {
+	before(function () {
 		element = document.createElement('div');
 		document.body.appendChild(element);
 	});
 
-	after(function() {
+	after(function () {
 		element.remove();
 	});
 
-	afterEach(function() {
+	afterEach(function () {
 		action.destroy!();
 	});
 
-	it('dispatches pan events', function() {
+	it('dispatches pan events', function () {
 		action = pannable(element);
 		const panstartCb = sinon.spy();
 		const panmoveCb = sinon.spy();
@@ -29,7 +28,7 @@ describe('pannable', function() {
 		element.addEventListener('panmove', panmoveCb);
 		element.addEventListener('panend', panendCb);
 
-		element.dispatchEvent(new window.MouseEvent('mousedown', { clientX: 20, clientY: 30}));
+		element.dispatchEvent(new window.MouseEvent('mousedown', { clientX: 20, clientY: 30 }));
 		const panstartDetail = panstartCb.firstCall.firstArg.detail;
 		assert.deepStrictEqual(panstartDetail, { x: 20, y: 30 });
 
