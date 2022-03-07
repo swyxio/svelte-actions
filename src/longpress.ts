@@ -15,26 +15,28 @@ import { Action } from './types';
 export const longpress: Action<number> = (node, duration) => {
 	let timer: number;
 
-	const handleMousedown = () => {
+	function handle_mouse_down() {
 		timer = window.setTimeout(() => {
 			node.dispatchEvent(new CustomEvent('longpress'));
 		}, duration);
-	};
+	}
 
-	const handleMouseup = () => {
+	function handle_mouse_up() {
 		clearTimeout(timer);
-	};
+	}
 
-	node.addEventListener('mousedown', handleMousedown);
-	node.addEventListener('mouseup', handleMouseup);
+	node.addEventListener('mousedown', handle_mouse_down);
+	node.addEventListener('mouseup', handle_mouse_up);
 
 	return {
 		update(newDuration) {
+			handle_mouse_up();
 			duration = newDuration;
 		},
 		destroy() {
-			node.removeEventListener('mousedown', handleMousedown);
-			node.removeEventListener('mouseup', handleMouseup);
+			handle_mouse_up();
+			node.removeEventListener('mousedown', handle_mouse_down);
+			node.removeEventListener('mouseup', handle_mouse_up);
 		},
 	};
 };

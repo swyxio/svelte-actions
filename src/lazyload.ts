@@ -1,5 +1,22 @@
 import { Action } from './types';
+const node_attributes_map = new WeakMap<HTMLElement, object>();
 
+const intersection_handler: IntersectionObserverCallback = (entries) => {
+	entries.forEach((entry) => {
+		if (entry.isIntersecting && entry.target instanceof HTMLElement) {
+			const node = entry.target;
+			Object.assign(node, node_attributes_map.get(node));
+			lazy_load_observer.unobserve(node);
+		}
+	});
+};
+
+let lazy_load_observer: IntersectionObserver;
+function observer() {
+	return (
+		lazy_load_observer || (lazy_load_observer = new IntersectionObserver(intersection_handler))
+	);
+}
 /**
  * Attach onto any image to lazy load it
  *
@@ -8,37 +25,12 @@ import { Action } from './types';
  * Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
  *
  */
-const lazyLoadHandleIntersection: IntersectionObserverCallback = (entries) => {
-	entries.forEach((entry) => {
-		if (!entry.isIntersecting) {
-			return;
-		}
-
-		if (!(entry.target instanceof HTMLElement)) {
-			return;
-		}
-
-		let node = entry.target;
-		let attributes = lazyLoadNodeAttributes.find((item) => item.node === node)?.attributes;
-		Object.assign(node, attributes);
-
-		lazyLoadObserver.unobserve(node);
-	});
-};
-
-let lazyLoadObserver: IntersectionObserver;
-let lazyLoadNodeAttributes: Array<{ node: HTMLElement; attributes: Object }> = [];
-
-export const lazyload: Action<Object> = (node, attributes) => {
-	if (!lazyLoadObserver) {
-		lazyLoadObserver = new IntersectionObserver(lazyLoadHandleIntersection);
-	}
-	lazyLoadNodeAttributes.push({ node, attributes });
-
-	lazyLoadObserver.observe(node);
+export const lazyload: Action<object> = (node, attributes) => {
+	node_attributes_map.set(node, attributes);
+	observer().observe(node);
 	return {
 		destroy() {
-			lazyLoadObserver.unobserve(node);
+			observer().unobserve(node);
 		},
 	};
 };

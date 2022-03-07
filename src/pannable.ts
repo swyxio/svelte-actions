@@ -10,7 +10,7 @@ export const pannable: Action = (node) => {
 	let x: number;
 	let y: number;
 
-	function handleMousedown(event: MouseEvent) {
+	function handle_mousedown(event: MouseEvent) {
 		x = event.clientX;
 		y = event.clientY;
 
@@ -20,11 +20,11 @@ export const pannable: Action = (node) => {
 			})
 		);
 
-		window.addEventListener('mousemove', handleMousemove);
-		window.addEventListener('mouseup', handleMouseup);
+		window.addEventListener('mousemove', handle_mousemove);
+		window.addEventListener('mouseup', handle_mouseup);
 	}
 
-	function handleMousemove(event: MouseEvent) {
+	function handle_mousemove(event: MouseEvent) {
 		const dx = event.clientX - x;
 		const dy = event.clientY - y;
 		x = event.clientX;
@@ -37,7 +37,7 @@ export const pannable: Action = (node) => {
 		);
 	}
 
-	function handleMouseup(event: MouseEvent) {
+	function handle_mouseup(event: MouseEvent) {
 		x = event.clientX;
 		y = event.clientY;
 
@@ -47,15 +47,15 @@ export const pannable: Action = (node) => {
 			})
 		);
 
-		window.removeEventListener('mousemove', handleMousemove);
-		window.removeEventListener('mouseup', handleMouseup);
+		window.removeEventListener('mousemove', handle_mousemove);
+		window.removeEventListener('mouseup', handle_mouseup);
 	}
 
-	node.addEventListener('mousedown', handleMousedown);
+	node.addEventListener('mousedown', handle_mousedown);
 
 	return {
 		destroy() {
-			node.removeEventListener('mousedown', handleMousedown);
+			node.removeEventListener('mousedown', handle_mousedown);
 		},
 	};
 };
