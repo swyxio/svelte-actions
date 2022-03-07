@@ -2,14 +2,13 @@ import { Action } from './types';
 
 /**
  * Creates `longpress` event when mousedown above `duration` milliseconds.
- * 
- * Usage:
- * 
- *<button use:longpress={duration}
-    on:longpress="{() => pressed = true}"
-    on:mouseenter="{() => pressed = false}"
-  >press and hold</button>
  *
+ * @example
+ * ```svelte
+ * <button use:longpress={duration} on:longpress={() => alert("longpress")}>
+ * press and hold
+ * </button>
+ *```
  * Demo: https://svelte.dev/tutorial/adding-parameters-to-actions
  */
 export const longpress: Action<number> = (node, duration) => {

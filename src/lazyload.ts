@@ -16,10 +16,11 @@ function observer() {
 	return (lazy_load_observer ??= new IntersectionObserver(intersection_handler));
 }
 /**
- * Attach onto any image to lazy load it
- *
+ * Set attributes on an element when it is visible in the viewport.
+ *@example
+ *```svelte
  * <img use:lazyLoad={{src:"/myimage"}} alt="">
- *
+ *```
  * Demo: https://svelte.dev/repl/f12988de576b4bf9b541a2a59eb838f6?version=3.23.2
  *
  */

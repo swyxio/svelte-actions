@@ -5,6 +5,10 @@ import { Action } from './types';
  *
  * Demo: https://svelte.dev/tutorial/actions
  *
+ * @example
+ * ```svelte
+ * <div use:pannable={true} on:panstart on:panmove on:panend>
+ * ```
  */
 export const pannable: Action = (node) => {
 	let x: number;
