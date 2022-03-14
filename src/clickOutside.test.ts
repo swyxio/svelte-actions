@@ -51,9 +51,8 @@ describe('clickOutside', function () {
 		const cb = sinon.fake();
 		action = clickOutside(element, { enabled: true, cb });
 
-		// @ts-expect-error
-		action.update!({ enabled: false });
-		element.click();
+		action.update({ enabled: false, cb });
+		sibling.click();
 		assert.ok(cb.notCalled);
 	});
 });
