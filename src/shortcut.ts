@@ -1,25 +1,27 @@
 import type { Action } from './types.js';
 
-export type ShortcutConfig = {
+export interface ShortcutConfig {
+	/**
+	 * Should the event be active or not.
+	 * Allows to remove listener when not necessary.
+	 */
+	active?: boolean;
+	alt?: boolean;
+	/**
+	 * The callback to be called when the shortcut is triggered.
+	 */
+	callback?: (node: HTMLElement) => void;
 	/**
 	 * The code of the key to listen for.
 	 * {@link https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code}
 	 */
 	code: KeyboardEventInit['code'];
-
-	/**
-	 * The callback to be called when the shortcut is triggered.
-	 */
-	callback?: (node: HTMLElement) => void;
-
 	control?: boolean;
 	shift?: boolean;
-	alt?: boolean;
-};
-
-function default_callback(node: HTMLElement) {
-	node.click();
 }
+
+const callbackFallback = (node: HTMLElement) => node.click();
+
 /**
  * Simplest possible way to add a keyboard shortcut to an element.
  * It either calls a callback or clicks on the node it was put on.
@@ -30,29 +32,50 @@ function default_callback(node: HTMLElement) {
  * ```
  */
 export const shortcut: Action<ShortcutConfig> = (node, config) => {
-	function handler(event: KeyboardEvent) {
-		const should_ignore = !(
-			!!config.alt == event.altKey &&
-			!!config.shift == event.shiftKey &&
-			!!config.control == (event.ctrlKey || event.metaKey) &&
-			config.code == event.code
-		);
+	const validate = (event: KeyboardEvent) => {
+		const { alt = false, code, control = false, shift = false } = config;
 
-		if (should_ignore) return;
+		return [
+			code === event.code,
+			alt === event.altKey,
+			control == event.ctrlKey || control === event.metaKey,
+			shift === event.shiftKey,
+		].every(Boolean);
+	};
+
+	const handleKeyboard = (event: KeyboardEvent) => {
+		if (!validate(event)) {
+			return;
+		}
 
 		event.preventDefault();
+		(config.callback || callbackFallback)(node);
+	};
 
-		(config.callback || default_callback)(node);
-	}
+	const activate = () => {
+		window.addEventListener('keydown', handleKeyboard);
+	};
 
-	window.addEventListener('keydown', handler);
+	const deactivate = () => {
+		window.removeEventListener('keydown', handleKeyboard);
+	};
+
+	const init = () => {
+		const { active = true } = config;
+		active
+			? activate()
+			: deactivate();
+	};
+
+	init();
 
 	return {
-		update(params) {
-			config = params;
+		update(updatedConfig) {
+			config = updatedConfig;
+			init();
 		},
 		destroy() {
-			window.removeEventListener('keydown', handler);
-		},
+			deactivate();
+		}
 	};
 };
