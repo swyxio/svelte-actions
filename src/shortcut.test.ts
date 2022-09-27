@@ -81,6 +81,18 @@ describe('shortcut', function () {
 
 		assert.ok(callback.calledOnce);
 	});
+
+	it('does not fire callback when it is inactive', function () {
+		const callback = sinon.fake();
+		action = shortcut(element, { code: spaceKeyCode, callback });
+		dispatchKeydownEvent({ code: spaceKeyCode });
+		action.update!({ active: false, code: spaceKeyCode, callback });
+		dispatchKeydownEvent({ code: spaceKeyCode });
+		action.update!({ code: spaceKeyCode, callback });
+		dispatchKeydownEvent({ code: spaceKeyCode });
+
+		assert.ok(callback.calledTwice);
+	});
 });
 
 function dispatchKeydownEvent(eventInitDict: KeyboardEventInit) {
